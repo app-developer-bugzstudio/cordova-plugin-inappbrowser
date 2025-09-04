@@ -35,6 +35,13 @@ public class InAppBrowserDialog extends Dialog {
     public InAppBrowserDialog(Context context, int theme) {
         super(context, theme);
         this.context = context;
+
+        Window window = getWindow();
+        if (window != null) {
+            WindowCompat.setDecorFitsSystemWindows(window, false);
+            WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(window, window.getDecorView());
+            controller.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());
+        }
     }
 
     public void setInAppBroswer(InAppBrowser browser) {
